@@ -10,7 +10,7 @@ from similarity import generate_similarity_xlsx
 app = FastAPI()
 
 @app.post("/check_similarity/")
-async def create_upload_file(file: UploadFile = File(...)):
+async def create_upload_file(file: UploadFile = File(...)) -> StreamingResponse:
     stream = generate_similarity_xlsx(file)
     response = StreamingResponse(
         iter([stream.getvalue()]),
@@ -19,4 +19,3 @@ async def create_upload_file(file: UploadFile = File(...)):
     response.headers["Content-Disposition"] = "attachment; filename=similarity.xlsx"
     stream.close()
     return response
-
