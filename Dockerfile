@@ -11,6 +11,5 @@ WORKDIR /app
 ENV PYTHONPATH=/app
 
 EXPOSE 80
-EXPOSE 443
 
-ENTRYPOINT ["uvicorn", "--host", "0.0.0.0", "--port", "80", "main:app"]
+CMD ["uvicorn", "--host", "0.0.0.0", "--port", "80", "main:app"]
