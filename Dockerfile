@@ -10,6 +10,7 @@ COPY app /app
 WORKDIR /app
 ENV PYTHONPATH=/app
 
-EXPOSE 8000
+EXPOSE 80
+EXPOSE 443
 
-ENTRYPOINT ["uvicorn", "--host", "0.0.0.0", "main:app"]
+ENTRYPOINT ["uvicorn", "--host", "0.0.0.0", "--port", "80", "main:app"]
