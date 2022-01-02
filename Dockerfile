@@ -1,17 +1,15 @@
-FROM python:3.8.12
+FROM python:3.8.12-bullseye
 
 ## PIP Requirements
-RUN pip install pipenv
+RUN pip install --upgrade pip pipenv
 COPY Pipfile* /tmp/
 RUN cd /tmp && pipenv lock --requirements > requirements.txt
 RUN python3 -m pip install -r /tmp/requirements.txt --no-cache-dir
 
-ENV PYTHONPATH=/app
 COPY app /app
-COPY frontend/home.html /app
 WORKDIR /app
+ENV PYTHONPATH=/app
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8000
 
 ENTRYPOINT ["uvicorn", "--host", "0.0.0.0", "main:app"]
