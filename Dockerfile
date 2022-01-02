@@ -10,6 +10,4 @@ COPY app /app
 WORKDIR /app
 ENV PYTHONPATH=/app
 
-EXPOSE 80
-
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "$PORT", "main:app"]
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
